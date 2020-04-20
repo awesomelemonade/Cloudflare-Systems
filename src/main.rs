@@ -100,6 +100,9 @@ impl Config {
                 Ok(ttl) => ttl,
                 Err(_e) => return Err("Failed to parse TTL")
             };
+            if ttl <= 0 {
+                return Err("TTL must be greater than 0");
+            }
             return Ok(Config {ip, ttl})
         } else {
             return Ok(Config {ip, ttl: 64})
